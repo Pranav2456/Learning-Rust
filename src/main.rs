@@ -158,4 +158,105 @@ fn main() {
             println!("A circle of radius {} and diameter {}!", radius, radius * 2.0);
         }
     }
+
+    // Immutable references
+
+    struct Config {
+        port : u32,
+    };
+
+    let config: Config = Config {
+        port: 8080,
+    };
+
+    let config_references : &Config = &config;
+    println!("Port: {}", config_references.port);
+
+    // We can have multiple immutable references
+
+    let val = 10;
+    let r1 = &val;
+    let r2 = &val;
+    println!("{r1} should be equal to {r2}");
+
+    // Mutable Refernces 
+
+    let mut config: Config = Config {
+        port: 8080,
+    };
+    let config_references : &mut Config = &mut config;
+    config_references.port = 4000;
+    println!("Port: {}", config.port);
+
+    // We can have only one mutable refernces to a value simultaneously
+    let mut val = 10;
+    let r1 = &mut val;
+    //let r2 = &mut val;
+    *r1 = 5;
+    //*r2 = 6; // Error: cannot borrow `val` as mutable more than once at a time
+
+    // dereferencing
+    let val: i32 = 10;
+    let r1: &i32 = &val;
+
+    let val2: i32 = *r1;
+    println!("Value: {}", val2);
+
+    // The above code only works with a copyable type. A copyable type is one where we can create a new value by simplying copying the all the bits.
+    // For example, string is not a copyable type, because it is contains a pointer to a memory location. So, we cannot copy the string by copying the bits.
+
+    // Lifetimes describe in what part of the code a reference can be safely used. Basically, lifetimes describe the scope of a reference.
+
+    // Implicit conversion is  not allowed in Rust, but implicit conversion is allowed in rust
+    let n = 67.66_f32;
+    let m = n as u8;
+    println!("{m}");
+    // There are limitations to implicit conversion, for example we cannot convert a float to a char.
+
+    // Control Flow
+    let should_print = true;
+    if should_print {
+        println!("Should print");
+    }
+
+    let value = 10;
+    if value == 0 {
+        println!("Value is zero");
+    } else if value > -10 && value < 10 {
+        println!("Single Digit!");
+    } else {
+        println!("Not a single digit!");
+    }
+
+    // Looping -  There are three types of loops in Rust - loop, while, for
+
+    let mut i = 10;
+    loop {
+        if i == 0 {
+            break;
+        }
+        println!("{i}..");
+    }
+
+    while i != 0 {
+        println!("{i}..");
+        i -= 1;
+    }
+
+    for i in (1..=10).rev() {
+        println!("{i}..");
+    } 
+    // 1..=10 ia a range expression that creates a range from 1 to 10. a..b creates a range from a to b-1. .rev() produces a reverse iterator.
+
+    for i in (1..=10).rev() {
+        if i % 2 == 0 {
+            continue;
+        }
+        println!("{i}...");
+    }
+
+    // Conversions - From and Into provide a way to convert between types. From is used for conversion from a type to another type. Into is used for conversion from a type to another type.
+    // TryFrom and TryInto are used for fallible conversions. Fallible conversions are conversions that might fail.
+
+    
 }
