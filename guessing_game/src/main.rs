@@ -1,7 +1,8 @@
 use rand::Rng; // rand library used to generate random numbers
-use std::cmp::Ordering;
-use std::io; // io library used to take input from user and for output operations // cmp library used to compare two values
+// use std::cmp::Ordering;
+// use std::io; // io library used to take input from user and for output operations // cmp library used to compare two values
              // cargo doc --open to open the documentation of the libraries used in the project
+use std::{cmp::Ordering, io}; // This is an idiomatic way to bring multiple items with the same prefix into scope. This is the same as the previous two lines, but it's more concise.
 
 fn main() {
     println!("Guess the number!");
