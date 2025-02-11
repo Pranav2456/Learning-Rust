@@ -60,3 +60,14 @@ fn main() {
     }
     // match expression is made up of arms. An arm consists of a pattern and the code that should be run if the value given to the beginning of the match expression fits that arm’s pattern. Rust takes the value given to match and looks through each arm’s pattern in turn. The match construct and the arms are separated by curly braces.
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic(expected = "must be between 1 and 100")]
+    fn greater_than_100() {
+        Guess::new(200);
+    }
+}
